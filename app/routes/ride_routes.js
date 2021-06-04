@@ -11,12 +11,14 @@ const requireToken = passport.authenticate('bearer', { session: false })
 
 const router = express.Router()
 
-router.post('/rides', requireToken, (req, res, next) => {
-  req.body.ride.owner = req.user._id
-  const rideData = req.body
+// router.post('/rides', requireToken, (req, res, next) => {
+//   req.body.ride.owner = req.user._id
+//   const rideData = req.body
+//
+//   Ride.create(rideData)
+//     .then(ride => {
+//       res.send()
+//     })
+// })
 
-  Ride.create(rideData)
-    .then(ride => {
-      res.send()
-    })
-})
+module.exports = router
