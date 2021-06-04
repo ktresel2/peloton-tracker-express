@@ -7,7 +7,6 @@ const cors = require('cors')
 const userRoutes = require('./app/routes/user_routes')
 const rideRoutes = require('./app/routes/ride_routes')
 
-
 // require middleware
 const errorHandler = require('./lib/error_handler')
 const requestLogger = require('./lib/request_logger')

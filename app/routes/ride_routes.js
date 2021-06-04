@@ -2,7 +2,7 @@ const express = require('express')
 
 const passport = require('passport')
 
-const errors = require('./../../lib_custom_errors')
+const errors = require('./../../lib/custom_errors')
 
 const Ride = require('./../models/ride')
 const User = require('./../models/user')
@@ -17,6 +17,6 @@ router.post('/rides', requireToken, (req, res, next) => {
 
   Ride.create(rideData)
     .then(ride => {
-      res.send() 
+      res.send()
     })
 })
