@@ -17,6 +17,6 @@ router.post('/rides', requireToken, (req, res, next) => {
 
   Ride.create(rideData)
     .then(ride => {
-      res.send()
+      res.send() 
     })
 })
