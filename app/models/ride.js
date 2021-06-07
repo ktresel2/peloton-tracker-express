@@ -4,6 +4,9 @@ const rideSchema = new mongoose.Schema({
   date: {
     type: String
   },
+  duration: {
+    type: Number
+  },
   miles: {
     type: Number
   },
@@ -12,6 +15,9 @@ const rideSchema = new mongoose.Schema({
   },
   calories: {
     type: Number
+  },
+  instructor: {
+    type: String
   },
   owner: {
     type: mongoose.Schema.Types.ObjectId,
