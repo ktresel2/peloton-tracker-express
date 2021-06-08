@@ -2,7 +2,7 @@ const express = require('express')
 
 const passport = require('passport')
 
-const { requireOwnership } = require('./../../lib/custom_errors')
+const { requireOwnership, handle404 } = require('./../../lib/custom_errors')
 
 const Ride = require('./../models/ride')
 
@@ -20,11 +20,11 @@ router.get('/rides', requireToken, (req, res, next) => {
 
 router.post('/rides', requireToken, (req, res, next) => {
   req.body.ride.owner = req.user._id
-  const rideData = req.body
+  const rideData = req.body.ride
 
   Ride.create(rideData)
     .then(ride => {
-      res.status(201).json({ride})
+      res.status(201).json({ ride })
     })
     .catch(next)
 })
@@ -33,9 +33,11 @@ router.delete('/rides/:id', requireToken, (req, res, next) => {
   const id = req.params.id
 
   Ride.findById(id)
-    .then(ride => {
-      requireOwnership(req, ride)
-    })
+    .then(handle404)
+    .then(ride => console.log(ride))
+    .then(ride => requireOwnership(req, ride))
+    .then(ride => console.log(ride))
+
     .then(ride => {
       ride.deleteOne()
     })
