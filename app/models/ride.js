@@ -7,7 +7,7 @@ const rideSchema = new mongoose.Schema({
   duration: {
     type: Number
   },
-  miles: {
+  mileage: {
     type: Number
   },
   output: {
