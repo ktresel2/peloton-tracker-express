@@ -19,15 +19,10 @@ router.get('/rides', requireToken, (req, res, next) => {
 })
 
 router.post('/rides', requireToken, (req, res, next) => {
-  console.log('hey')
   req.body.rideData.owner = req.user._id
   const rideData = req.body.rideData
 
-  console.log(rideData)
   Ride.create(rideData)
-    // .then(ride => {
-    //   requireOwnership(req, ride)
-    // })
     .then(ride => {
       res.status(201).json({ ride })
     })
@@ -39,7 +34,7 @@ router.delete('/rides/:id', requireToken, (req, res, next) => {
 
   Ride.findById(id)
     .then(ride => {
-      // requireOwnership(req, ride)
+      requireOwnership(req, ride)
       ride.deleteOne()
     })
     .then(id => {
@@ -49,16 +44,16 @@ router.delete('/rides/:id', requireToken, (req, res, next) => {
 })
 
 router.patch('/rides/:id', requireToken, (req, res, next) => {
-  delete req.body.event.owner
+  delete req.body.rideData.owner
   const id = req.params.id
 
-  Ride.findbyId(id)
+  Ride.findById(id)
     .then(ride => {
       requireOwnership(req, ride)
-      return ride.updateOne(req.body.ride)
+      return ride.updateOne(req.body.rideData)
     })
-    .then(() => {
-      res.status(204)
+    .then(ride => {
+      res.status(200).json({ride})
     })
     .catch(next)
 })
