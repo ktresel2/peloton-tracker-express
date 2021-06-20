@@ -6,4 +6,4 @@ This application is a back end server that uses Express and MongoDB to collect a
 
 [Heroku](https://ancient-thicket-87033.herokuapp.com)
 
-![ERD](https://imgur.com/Ihw0HSj)
+![ERD](https://i.imgur.com/Ihw0HSj.jpeg)
